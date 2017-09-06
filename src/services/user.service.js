@@ -12,6 +12,12 @@ export default class UsersService {
       .then(response => response.data);
   }
 
+  getUserByLogin(login) {
+    return this.$http
+      .get(`${this.GITHUB_API_URL}/users/${login}`)
+      .then(response => response.data);
+  }
+
   getUserRepositories(login, page = 1, quantity = 20) {
     return this.$http
       .get(`${this.GITHUB_API_URL}/users/${login}/repos`, {
