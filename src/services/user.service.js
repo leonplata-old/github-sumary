@@ -11,6 +11,12 @@ export default class UsersService {
       })
       .then(response => response.data);
   }
+
+  getUserByLogin(login) {
+    return this.$http
+      .get(`${this.GITHUB_API_URL}/users/${login}`)
+      .then(response => response.data);
+  }
 }
 
 UsersService.$inject = ['$http', 'GITHUB_API_URL'];
