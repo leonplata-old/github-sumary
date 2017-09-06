@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import routesConfig from './routes.config';
 import './style.scss';
 
+import layoutComponent from './components/layout/layout.component';
+
 const modules = [
   uiRouter,
 ];
@@ -14,6 +16,7 @@ const configurations = [
 ];
 
 const components = [
+  layoutComponent,
 ];
 
 const app = angular.module('app', modules);
