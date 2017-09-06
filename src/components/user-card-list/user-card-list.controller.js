@@ -1,4 +1,4 @@
-export default class UserListController {
+export default class UserCardListController {
   constructor(UsersService) {
     this.UsersService = UsersService;
     this.users = [];
@@ -12,4 +12,4 @@ export default class UserListController {
   }
 }
 
-UserListController.$inject = ['UsersService'];
+UserCardListController.$inject = ['UsersService'];

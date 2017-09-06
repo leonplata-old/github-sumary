@@ -7,9 +7,9 @@ const router = (
   $locationProvider.html5Mode(true);
 
   $stateProvider
-    .state('user-list', {
+    .state('users', {
       url: '/',
-      component: 'gsUserList',
+      component: 'gsUserCardList',
     });
 
   $urlRouterProvider.otherwise('/');
