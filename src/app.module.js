@@ -1,6 +1,8 @@
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import routesConfig from './routes.config';
 import './style.scss';
 
 const modules = [
@@ -8,6 +10,7 @@ const modules = [
 ];
 
 const configurations = [
+  routesConfig,
 ];
 
 const components = [
