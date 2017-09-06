@@ -12,7 +12,6 @@ export default class UserCardListController {
 
   showMore() {
     const lastUser = this.users[this.users.length - 1];
-    console.log(lastUser.id);
     this.fetchUsers(lastUser.id);
   }
 
