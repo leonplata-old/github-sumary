@@ -9,7 +9,8 @@
     "karma": "node_modules/.bin/karma",
     "dev": "npm run webpack-dev-server",
     "build": "cross-env NODE_ENV=production npm run webpack",
-    "test": "cross-env NODE_ENV=testing npm run karma -- start"
+    "test": "cross-env NODE_ENV=testing npm run karma -- start",
+    "start": "npm run dev"
   },
   "repository": {
     "type": "git",
