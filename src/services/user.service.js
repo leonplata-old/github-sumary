@@ -5,7 +5,10 @@ export default class UsersService {
   }
 
   getUsers(since = 0) {
-    return this.$http.get(`${this.GITHUB_API_URL}/users`, { since })
+    return this.$http
+      .get(`${this.GITHUB_API_URL}/users`, {
+        params: { since },
+      })
       .then(response => response.data);
   }
 }

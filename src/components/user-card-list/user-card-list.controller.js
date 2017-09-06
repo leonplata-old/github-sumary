@@ -7,18 +7,24 @@ export default class UserCardListController {
   }
 
   $onInit() {
-    this.fetchUsers();
+    this.fetchUsers(0);
   }
 
   showMore() {
-    this.fetchUsers();
+    const lastUser = this.users[this.users.length - 1];
+    console.log(lastUser.id);
+    this.fetchUsers(lastUser.id);
   }
 
-  fetchUsers() {
-    return this.UsersService.getUsers()
-      .then((users) => {
+  fetchUsers(id) {
+    return this.UsersService.getUsers(id)
+      .then((moreUsers) => {
         // Fetched users lack of name, login will temporarily be assigned as name
-        this.users = users.map(user => angular.extend({}, user, { name: user.login }));
+        const fixedUsers = moreUsers.map(user => angular.extend({}, user, { name: user.login }));
+        this.users = [
+          ...this.users,
+          ...fixedUsers,
+        ];
       });
   }
 }
