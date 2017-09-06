@@ -17,6 +17,14 @@ export default class UsersService {
       .get(`${this.GITHUB_API_URL}/users/${login}`)
       .then(response => response.data);
   }
+
+  getUserRepositories(login, page = 1, quantity = 20) {
+    return this.$http
+      .get(`${this.GITHUB_API_URL}/users/${login}/repos`, {
+        params: { page, quantity },
+      })
+      .then(response => response.data);
+  }
 }
 
 UsersService.$inject = ['$http', 'GITHUB_API_URL'];
