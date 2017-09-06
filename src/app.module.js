@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import routesConfig from './routes.config';
 import './style.scss';
 
+import UserService from './services/user.service';
+
 import layoutComponent from './components/layout/layout.component';
 import userListComponent from './components/user-list/user-list.component';
 import userCardComponent from './components/user-card/user-card.component';
@@ -24,9 +26,16 @@ const components = [
   userCardComponent,
 ];
 
-const app = angular.module('app', modules);
+const services = [
+  UserService,
+];
+
+const app = angular
+  .module('app', modules)
+  .constant('GITHUB_API_URL', 'https://api.github.com');
 
 configurations.forEach(config => app.config(config));
+services.forEach(service => app.service(service.name, service));
 components.forEach(component => app.component(component.name, component));
 
 export default app;
