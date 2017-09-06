@@ -10,6 +10,8 @@ import UserService from './services/user.service';
 import layoutComponent from './components/layout/layout.component';
 import userCardListComponent from './components/user-card-list/user-card-list.component';
 import userCardComponent from './components/user-card/user-card.component';
+import repositoryCardListComponent from './components/repository-card-list/repository-card-list.component';
+import repositoryCardComponent from './components/repository-card/repository-card.component';
 
 
 const modules = [
@@ -24,6 +26,8 @@ const components = [
   layoutComponent,
   userCardListComponent,
   userCardComponent,
+  repositoryCardListComponent,
+  repositoryCardComponent,
 ];
 
 const services = [

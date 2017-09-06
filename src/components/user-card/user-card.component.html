@@ -7,9 +7,11 @@
         </div>
       </div>
       <div class="col-md-6 col-xs-12">
-        <div ng-bind="$ctrl.user.name"></div>
-        <div><a ng-href="{{$ctrl.user.html_url}}" target="_blank">GitHub URL</a></div>
-        <div><a ui-sref="repositories">Repositories</a></div>
+        <div class="text-center">
+          <strong ng-bind="$ctrl.user.name"></strong>
+        </div>
+        <div><a ng-href="{{$ctrl.user.html_url}}" target="_blank">See on GitHub</a></div>
+        <div><a ui-sref="users.detail({ login: $ctrl.user.login })">Repositories</a></div>
       </div>
     </div>
   </div>

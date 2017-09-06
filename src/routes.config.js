@@ -8,11 +8,19 @@ const router = (
 
   $stateProvider
     .state('users', {
-      url: '/',
+      url: '/users',
       component: 'gsUserCardList',
+    })
+    .state('users.detail', {
+      url: '/:login',
+      views: {
+        '@': {
+          component: 'gsRepositoryCardList',
+        },
+      },
     });
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/users');
 };
 
 router.$inject = [

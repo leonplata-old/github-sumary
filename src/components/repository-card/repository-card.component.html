@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <label ng-bind="$ctrl.repository.name"></label>
+  </div>
+  <div class="list-group">
+    <div class="list-group-item">
+      <a ng-href="{{$ctrl.repository.html_url}}" target="_blank">Go to repository</a>
+    </div>
+    <div class="list-group-item" ng-if="$ctrl.repository.description">
+      <div>
+        <label>Description</label>
+        <p ng-bind="$ctrl.repository.description"></p>
+      </div>
+    </div>
+    <div class="list-group-item">
+      <div class="card-row card-row-header">
+        <div class="card-col">
+          <label>Open Issues</label>
+        </div>
+        <div class="card-col">
+          <label>Forks</label>
+        </div>
+      </div>
+      <div class="card-row">
+        <div class="card-col">
+          <span style="font-size: 2em;" ng-bind="$ctrl.repository.open_issues"></span>
+        </div>
+        <div class="card-col">
+          <span style="font-size: 2em;" ng-bind="$ctrl.repository.forks"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
