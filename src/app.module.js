@@ -1,5 +1,7 @@
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './style.scss';
 
 const modules = [
   uiRouter,
