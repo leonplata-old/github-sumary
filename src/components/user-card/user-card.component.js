@@ -6,6 +6,7 @@ const component = {
   name: 'gsUserCard',
   template,
   controller: UserCardController,
+  bindings: { user: '<' },
 };
 
 export default Object.freeze(component);

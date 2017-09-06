@@ -1,3 +1,5 @@
+import angular from 'angular';
+
 export default class UserCardListController {
   constructor(UsersService) {
     this.UsersService = UsersService;
@@ -5,9 +7,18 @@ export default class UserCardListController {
   }
 
   $onInit() {
-    this.UsersService.getUsers()
+    this.fetchUsers();
+  }
+
+  showMore() {
+    this.fetchUsers();
+  }
+
+  fetchUsers() {
+    return this.UsersService.getUsers()
       .then((users) => {
-        this.users = users;
+        // Fetched users lack of name, login will temporarily be assigned as name
+        this.users = users.map(user => angular.extend({}, user, { name: user.login }));
       });
   }
 }
