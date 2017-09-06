@@ -9,7 +9,7 @@
       <div class="col-md-6 col-xs-12">
         <div ng-bind="$ctrl.user.name"></div>
         <div><a ng-href="{{$ctrl.user.html_url}}" target="_blank">GitHub URL</a></div>
-        <div><a ui-sref="repositories">Repositories</a></div>
+        <div><a ui-sref="users.detail({ login: $ctrl.user.login })">Repositories</a></div>
       </div>
     </div>
   </div>
