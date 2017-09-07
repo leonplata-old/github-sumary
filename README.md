@@ -14,4 +14,4 @@ The development tool configurations for this project (Webpack, Karma, ESLint) ar
 
 ## Revisions
 
-**IMPORTANT:** The revision of this practice can be found on tag (**rev1**)[https://github.com/leonplata/github-sumary/tree/rev1]
+**IMPORTANT:** The version for revision of this practice can be found on tag (**rev1**)[https://github.com/leonplata/github-sumary/tree/rev1]
