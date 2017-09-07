@@ -6,7 +6,7 @@
     <div class="list-group-item">
       <a ng-href="{{$ctrl.repository.html_url}}" target="_blank">Go to repository</a>
     </div>
-    <div class="list-group-item" ng-if="$ctrl.repository.description">
+    <div class="list-group-item flex-item-1" ng-if="$ctrl.repository.description">
       <div>
         <label>Description</label>
         <p ng-bind="$ctrl.repository.description"></p>
@@ -22,14 +22,13 @@
         </div>
       </div>
       <div class="card-row">
-        <div class="card-col">
-          <span style="font-size: 2em;" ng-bind="$ctrl.repository.open_issues"></span>
+        <div class="card-col card-col-big">
+          <span ng-bind="$ctrl.repository.open_issues"></span>
         </div>
-        <div class="card-col">
-          <span style="font-size: 2em;" ng-bind="$ctrl.repository.forks"></span>
+        <div class="card-col card-col-big">
+          <span ng-bind="$ctrl.repository.forks"></span>
         </div>
       </div>
     </div>
   </div>
-
 </div>
