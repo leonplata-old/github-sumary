@@ -1,10 +1,8 @@
 <h1>
-  <span ng-bind="$ctrl.login"></span>'s
-  repositories
+  <span ng-bind="$ctrl.login"></span>'s repositories
 </h1>
-
-<div class="row">
-    <div class="col-xs-3" ng-repeat="repository in $ctrl.repositories track by $index">
-      <gs-repository-card repository="repository"></gs-repository-card>
-    </div>
+<div class="repository-card-container">
+  <div class="repository-card-grid" ng-repeat="repository in $ctrl.repositories track by $index">
+    <gs-repository-card repository="repository"></gs-repository-card>
   </div>
+</div>
