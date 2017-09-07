@@ -4,7 +4,13 @@ export default class UserCardController {
   }
 
   $onInit() {
-    this.UsersService.getUserByLogin(this.user.login)
+    if (!this.user.name) {
+      this.fetchCurrentUser();
+    }
+  }
+
+  fetchCurrentUser() {
+    return this.UsersService.getUserByLogin(this.user.login)
       .then((user) => {
         this.user.name = user.name;
       });
