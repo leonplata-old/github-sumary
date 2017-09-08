@@ -18,11 +18,9 @@ export default class UserCardListController {
   fetchUsers(id) {
     return this.UsersService.getUsers(id)
       .then((moreUsers) => {
-        // Fetched users lack of name, login will temporarily be assigned as name
-        const fixedUsers = moreUsers.map(user => angular.extend({}, user, { name: user.login }));
         this.users = [
           ...this.users,
-          ...fixedUsers,
+          ...moreUsers,
         ];
       });
   }
