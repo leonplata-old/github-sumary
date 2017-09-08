@@ -1,3 +1,5 @@
+import { createPaginationLinks } from '~/utils/api';
+
 export default class UsersService {
   constructor($http, GITHUB_API_URL) {
     this.$http = $http;
@@ -18,12 +20,17 @@ export default class UsersService {
       .then(response => response.data);
   }
 
-  getUserRepositories(login, page = 1, quantity = 20) {
+  getUserReposPagination(login, page = 1, perPage = 20) {
     return this.$http
       .get(`${this.GITHUB_API_URL}/users/${login}/repos`, {
-        params: { page, quantity },
+        params: { page, per_page: perPage },
       })
-      .then(response => response.data);
+      .then((response) => {
+        const linkHeader = response.headers('Link');
+        const fetchHandler = ({ page: fetchPage }) => this.getUserReposPagination(login, fetchPage, perPage);
+        const links = createPaginationLinks(linkHeader, fetchHandler);
+        return { links, content: response.data };
+      });
   }
 }
 

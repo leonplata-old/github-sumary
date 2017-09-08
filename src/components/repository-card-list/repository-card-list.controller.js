@@ -6,9 +6,9 @@ export default class RepositoryCardListController {
   }
 
   $onInit() {
-    this.UsersService.getUserRepositories(this.login)
-      .then((repositories) => {
-        this.repositories = repositories;
+    this.UsersService.getUserReposPagination(this.login)
+      .then((pagination) => {
+        this.repositories = pagination.content;
       });
   }
 }
