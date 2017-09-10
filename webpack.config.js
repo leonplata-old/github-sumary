@@ -22,10 +22,10 @@ const when = (...envs) => ({
 
 module.exports = {
 
-  entry: './src/app.module',
+  entry: NODE_ENV === environments.PRODUCTION ? './src/app.prod.module' : './src/app.module',
 
   output: {
-    filename: 'bundle.js',
+    filename: 'app.js',
     path: resolve(__dirname, 'dist'),
   },
 
