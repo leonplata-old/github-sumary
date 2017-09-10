@@ -2,7 +2,7 @@ import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import routesConfig from './routes.config';
+import routesConfig from './configurations/routes.config';
 import './style.scss';
 
 import UserService from './services/user.service';
@@ -34,12 +34,12 @@ const services = [
   UserService,
 ];
 
-const app = angular
+const appModule = angular
   .module('app', modules)
   .constant('GITHUB_API_URL', 'https://api.github.com');
 
-configurations.forEach(config => app.config(config));
-services.forEach(service => app.service(service.name, service));
-components.forEach(component => app.component(component.name, component));
+configurations.forEach(config => appModule.config(config));
+services.forEach(service => appModule.service(service.$name, service));
+components.forEach(component => appModule.component(component.name, component));
 
-export default app;
+export default appModule;
