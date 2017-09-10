@@ -1,25 +1,36 @@
 const { resolve } = require('path');
+const { readFileSync } = require('fs');
 const { DllReferencePlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const vendorDllManifest = require('./dist/vendor.json');
 
-const expectedEnvironments = [
-  'testing',
-  'production',
-  'development',
-];
+const environments = {
+  NONE: 'none',
+  TESTING: 'testing',
+  PRODUCTION: 'production',
+  DEVELOPMENT: 'development',
+};
 
-const [NODE_ENV = 'default'] = expectedEnvironments.filter(env => env === process.env.NODE_ENV);
+const { NODE_ENV = environments.NONE } = process.env;
+
+const when = (...envs) => ({
+  use(callback) {
+    return envs.find(env => env === NODE_ENV) ? callback() : [];
+  },
+});
 
 module.exports = {
+
   entry: './src/app.module',
+
   output: {
     filename: 'bundle.js',
     path: resolve(__dirname, 'dist'),
   },
+
   target: 'web',
+
   module: {
     rules: [
       {
@@ -41,12 +52,16 @@ module.exports = {
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader?limit=100000',
+        loader: 'url-loader',
+        options: {
+          limit: 100000,
+        },
       },
     ],
   },
+
   resolve: {
-    extensions: ['.js', '.json', '.scss'],
+    extensions: ['.js', '.json', '.scss', 'html'],
     alias: {
       '~': resolve('src'),
     },
@@ -54,38 +69,35 @@ module.exports = {
 
   plugins: [
 
-    new DllReferencePlugin({
-      context: process.cwd(),
-      manifest: vendorDllManifest,
-    }),
-
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
       inject: 'body',
     }),
 
-    new AddAssetHtmlPlugin({
-      filepath: resolve(__dirname, './dist/vendor.dll.js'),
-    }),
+    ...when(environments.DEVELOPMENT, environments.PRODUCTION).use(() => [
+      new DllReferencePlugin({
+        context: process.cwd(),
+        manifest: JSON.parse(readFileSync(resolve(__dirname, 'dist/vendor.json'))),
+      }),
 
-    ...{
+      new AddAssetHtmlPlugin({
+        filepath: resolve(__dirname, 'dist/vendor.dll.js'),
+      }),
+    ]),
 
-      production: [
-        new UglifyJSPlugin(),
-      ],
-
-      default: [
-      ],
-
-    }[NODE_ENV],
+    ...when(environments.PRODUCTION).use(() => [
+      new UglifyJSPlugin({
+        sourceMap: true,
+      }),
+    ]),
   ],
 
   devtool: {
 
-    testing: 'inline-source-map',
+    [environments.TESTING]: 'inline-source-map',
 
-    default: 'source-map',
+    [environments.DEVELOPMENT]: 'source-map',
 
   }[NODE_ENV],
 

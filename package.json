@@ -7,10 +7,10 @@
     "webpack": "node_modules/.bin/webpack --config webpack.config.js",
     "webpack-vendor": "node_modules/.bin/webpack --config webpack.config.vendor.js",
     "webpack-dev-server": "node_modules/.bin/webpack-dev-server",
-    "karma": "node_modules/.bin/karma",
-    "dev": "cross-env NODE_ENV=development npm run webpack-vendor && npm run webpack-dev-server",
-    "build": "cross-env NODE_ENV=production npm run webpack-vendor && npm run webpack",
-    "test": "cross-env NODE_ENV=testing npm run karma -- start",
+    "karma": "node_modules/.bin/karma start",
+    "dev": "cross-env NODE_ENV=development npm-run-all webpack-vendor webpack-dev-server",
+    "build": "cross-env NODE_ENV=production npm-run-all webpack-vendor webpack",
+    "test": "cross-env NODE_ENV=testing npm run karma",
     "start": "npm run dev"
   },
   "repository": {
@@ -51,6 +51,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.4",
     "node-sass": "^4.5.3",
+    "npm-run-all": "^4.1.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
