@@ -39,7 +39,7 @@ const app = angular
   .constant('GITHUB_API_URL', 'https://api.github.com');
 
 configurations.forEach(config => app.config(config));
-services.forEach(service => app.service(service.name, service));
+services.forEach(service => app.service(service.$name, service));
 components.forEach(component => app.component(component.name, component));
 
 export default app;

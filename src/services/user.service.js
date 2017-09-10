@@ -28,3 +28,4 @@ export default class UsersService {
 }
 
 UsersService.$inject = ['$http', 'GITHUB_API_URL'];
+UsersService.$name = 'UsersService';

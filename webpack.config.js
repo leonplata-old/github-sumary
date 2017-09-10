@@ -99,6 +99,8 @@ module.exports = {
 
     [environments.DEVELOPMENT]: 'source-map',
 
+    [environments.PRODUCTION]: 'source-map',
+
   }[NODE_ENV],
 
   devServer: {
